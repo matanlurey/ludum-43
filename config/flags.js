@@ -8,8 +8,8 @@ const PRODUCTION = process.env.NODE_ENV == 'production';
  */
 const flags = {
   DIMENSIONS: {
-    width: 800,
-    height: 600,
+    width: 640,
+    height: 480,
   },
   PRODUCTION: PRODUCTION,
   VERSION: '0.1.0',
