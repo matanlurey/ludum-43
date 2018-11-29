@@ -1,0 +1,42 @@
+language: node_js
+sudo: required
+node_js:
+- stable
+cache:
+  directories:
+  - "./node_modules/"
+env:
+  global:
+  - SSH_KEY="id_rsa"
+  - GIT_NAME="Matan Lurey"
+  - GIT_EMAIL="matan@lurey.org"
+  - SOURCE_DIR="dist"
+  - DEPLOY_BRANCH="master"
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
+addons:
+  chrome: stable
+branches:
+  only:
+  - master
+jobs:
+  include:
+  - env: MODE=build
+  - env: MODE=format
+  - env: MODE=lint
+before_install:
+- source ./script/ci/travis-env.sh
+install:
+- npm install
+script:
+- "./script/ci/travis-script.sh"
+deploy:
+  provider: pages
+  local-dir: dist
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  on:
+    branch: master
+    condition: "$MODE = build"

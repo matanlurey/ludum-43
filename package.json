@@ -1,0 +1,53 @@
+{
+  "name": "ludum-43",
+  "version": "1.0.0",
+  "description": "A game",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config ./config/webpack.prod.js && node ./script/ci/check-size.js",
+    "build:pretty": "NODE_ENV=production webpack --env.beautify=true --config ./config/webpack.prod.js",
+    "clean": "rimraf -- dist",
+    "deploy": "./script/deploy.sh",
+    "format": "prettier --config .prettierrc.json --write \"{,!(node_modules|dist)/**/}{,!(package-lock)}.{js,json,jsx,ts}\"",
+    "format:check": "prettier-check --list-different \"{,!(node_modules|dist)/**/}{,!(package-lock)}.{js,json,jsx,ts}\"",
+    "lint": "tslint --project .",
+    "lint:fix": "tslint --fix --project .",
+    "serve": "webpack-dev-server --config ./config/webpack.dev.js --hot",
+    "serve:prod": "npm run build && http-server dist",
+    "test": "node ./test/no-console-errors.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/irlbayarea/ludum-43.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/irlbayarea/ludum-43/issues"
+  },
+  "homepage": "https://github.com/irlbayarea/ludum-43#readme",
+  "sideEffects": false,
+  "devDependencies": {
+    "app-root-path": "^2.1.0",
+    "clean-webpack-plugin": "^0.1.19",
+    "copy-webpack-plugin": "^4.5.2",
+    "git-revision-webpack-plugin": "^3.0.3",
+    "html-webpack-plugin": "^3.2.0",
+    "http-server": "^0.11.1",
+    "prettier": "^1.14.0",
+    "prettier-check": "^2.0.0",
+    "puppeteer": "^1.7.0",
+    "rimraf": "^2.6.2",
+    "terser-webpack-plugin": "^1.0.0",
+    "ts-loader": "^4.4.2",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.14.0",
+    "tslint-eslint-rules": "^5.3.1",
+    "typescript": "^2.9.2",
+    "webpack": "^4.16.4",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5",
+    "webpack-merge": "^4.1.4",
+    "zip-webpack-plugin": "^3.0.0"
+  }
+}
