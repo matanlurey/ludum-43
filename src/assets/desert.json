@@ -187,7 +187,7 @@
         30,
         30,
         30,
-        30,
+        31,
         1,
         2,
         3,
@@ -233,7 +233,7 @@
         11,
         30,
         30,
-        30,
+        31,
         30,
         30,
         30,
@@ -352,13 +352,13 @@
         10,
         11,
         30,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
+        25,
+        26,
+        26,
+        26,
+        26,
+        26,
+        27,
         30,
         30,
         30,
@@ -391,14 +391,14 @@
         9,
         10,
         11,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
+        39,
+        33,
+        34,
+        34,
+        34,
+        34,
+        34,
+        35,
         30,
         30,
         30,
@@ -431,14 +431,14 @@
         9,
         10,
         11,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
+        39,
+        33,
+        34,
+        34,
+        34,
+        34,
+        34,
+        35,
         30,
         30,
         30,
@@ -471,14 +471,14 @@
         9,
         10,
         11,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
+        39,
+        33,
+        34,
+        34,
+        34,
+        34,
+        34,
+        35,
         30,
         30,
         30,
@@ -511,14 +511,14 @@
         9,
         10,
         11,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
+        39,
+        33,
+        34,
+        34,
+        34,
+        34,
+        34,
+        35,
         30,
         30,
         30,
@@ -551,14 +551,14 @@
         9,
         10,
         11,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
+        39,
+        33,
+        34,
+        34,
+        34,
+        34,
+        34,
+        35,
         30,
         30,
         30,
@@ -591,14 +591,14 @@
         9,
         10,
         11,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
+        39,
+        33,
+        34,
+        34,
+        34,
+        34,
+        34,
+        35,
         30,
         30,
         30,
@@ -631,14 +631,14 @@
         29,
         10,
         11,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
+        39,
+        41,
+        42,
+        42,
+        42,
+        42,
+        42,
+        43,
         30,
         30,
         30,
@@ -671,7 +671,7 @@
         10,
         10,
         11,
-        30,
+        39,
         30,
         30,
         30,
@@ -740,6 +740,15 @@
         30,
         30,
         30,
+        46,
+        46,
+        46,
+        46,
+        46,
+        46,
+        46,
+        46,
+        46,
         30,
         30,
         30,
@@ -747,16 +756,7 @@
         30,
         30,
         30,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
-        30,
+        38,
         30,
         30,
         30,
@@ -1606,6 +1606,7 @@
         30
       ],
       "height": 40,
+      "id": 1,
       "name": "Ground",
       "opacity": 1,
       "type": "tilelayer",
@@ -1615,10 +1616,11 @@
       "y": 0
     }
   ],
+  "nextlayerid": 2,
   "nextobjectid": 1,
   "orientation": "orthogonal",
   "renderorder": "right-down",
-  "tiledversion": "1.1.2",
+  "tiledversion": "1.2.1",
   "tileheight": 32,
   "tilesets": [
     {
@@ -1650,165 +1652,648 @@
       ],
       "tilecount": 48,
       "tileheight": 32,
-      "tiles": {
-        "0": {
+      "tiles": [
+        {
+          "id": 0,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
           "terrain": [0, 0, 0, 1]
         },
-        "1": {
+        {
+          "id": 1,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
           "terrain": [0, 0, 1, 1]
         },
-        "10": {
-          "terrain": [1, 0, 1, 0]
-        },
-        "11": {
-          "terrain": [3, 0, 3, 3]
-        },
-        "12": {
-          "terrain": [0, 3, 3, 3]
-        },
-        "13": {
-          "terrain": [0, 3, 0, 3]
-        },
-        "14": {
-          "terrain": [3, 3, 3, 3]
-        },
-        "15": {
-          "terrain": [3, 0, 3, 0]
-        },
-        "16": {
-          "terrain": [0, 1, 0, 0]
-        },
-        "17": {
-          "terrain": [1, 1, 0, 0]
-        },
-        "18": {
-          "terrain": [1, 0, 0, 0]
-        },
-        "19": {
-          "terrain": [1, 1, 1, 0]
-        },
-        "2": {
+        {
+          "id": 2,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
           "terrain": [0, 0, 1, 0]
         },
-        "20": {
-          "terrain": [1, 1, 0, 1]
-        },
-        "21": {
-          "terrain": [0, 3, 0, 0]
-        },
-        "22": {
-          "terrain": [3, 3, 0, 0]
-        },
-        "23": {
-          "terrain": [3, 0, 0, 0]
-        },
-        "24": {
-          "terrain": [0, 0, 0, 2]
-        },
-        "25": {
-          "terrain": [0, 0, 2, 2]
-        },
-        "26": {
-          "terrain": [0, 0, 2, 0]
-        },
-        "27": {
-          "terrain": [1, 0, 1, 1]
-        },
-        "28": {
-          "terrain": [0, 1, 1, 1]
-        },
-        "29": {
-          "terrain": [0, 0, 0, 0]
-        },
-        "3": {
+        {
+          "id": 3,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
           "terrain": [3, 3, 3, 0]
         },
-        "30": {
-          "probability": 0.01,
-          "terrain": [0, 0, 0, 0]
-        },
-        "31": {
-          "probability": 0.01,
-          "terrain": [0, 0, 0, 0]
-        },
-        "32": {
-          "terrain": [0, 2, 0, 2]
-        },
-        "33": {
-          "terrain": [2, 2, 2, 2]
-        },
-        "34": {
-          "terrain": [2, 0, 2, 0]
-        },
-        "35": {
-          "terrain": [2, 2, 2, 0]
-        },
-        "36": {
-          "terrain": [2, 2, 0, 2]
-        },
-        "37": {
-          "probability": 0.01,
-          "terrain": [0, 0, 0, 0]
-        },
-        "38": {
-          "probability": 0.01,
-          "terrain": [0, 0, 0, 0]
-        },
-        "39": {
-          "probability": 0.01,
-          "terrain": [0, 0, 0, 0]
-        },
-        "4": {
+        {
+          "id": 4,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
           "terrain": [3, 3, 0, 3]
         },
-        "40": {
-          "terrain": [0, 2, 0, 0]
-        },
-        "41": {
-          "terrain": [2, 2, 0, 0]
-        },
-        "42": {
-          "terrain": [2, 0, 0, 0]
-        },
-        "43": {
-          "terrain": [2, 0, 2, 2]
-        },
-        "44": {
-          "terrain": [0, 2, 2, 2]
-        },
-        "45": {
-          "probability": 0,
-          "terrain": [0, 0, 0, 0]
-        },
-        "46": {
-          "probability": 0.01,
-          "terrain": [0, 0, 0, 0]
-        },
-        "47": {
-          "probability": 0.01,
-          "terrain": [0, 0, 0, 0]
-        },
-        "5": {
+        {
+          "id": 5,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
           "terrain": [0, 0, 0, 3]
         },
-        "6": {
+        {
+          "id": 6,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
           "terrain": [0, 0, 3, 3]
         },
-        "7": {
+        {
+          "id": 7,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
           "terrain": [0, 0, 3, 0]
         },
-        "8": {
+        {
+          "id": 8,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
           "terrain": [0, 1, 0, 1]
         },
-        "9": {
+        {
+          "id": 9,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
           "terrain": [1, 1, 1, 1]
+        },
+        {
+          "id": 10,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [1, 0, 1, 0]
+        },
+        {
+          "id": 11,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [3, 0, 3, 3]
+        },
+        {
+          "id": 12,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [0, 3, 3, 3]
+        },
+        {
+          "id": 13,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [0, 3, 0, 3]
+        },
+        {
+          "id": 14,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [3, 3, 3, 3]
+        },
+        {
+          "id": 15,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [3, 0, 3, 0]
+        },
+        {
+          "id": 16,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [0, 1, 0, 0]
+        },
+        {
+          "id": 17,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [1, 1, 0, 0]
+        },
+        {
+          "id": 18,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [1, 0, 0, 0]
+        },
+        {
+          "id": 19,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [1, 1, 1, 0]
+        },
+        {
+          "id": 20,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [1, 1, 0, 1]
+        },
+        {
+          "id": 21,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [0, 3, 0, 0]
+        },
+        {
+          "id": 22,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [3, 3, 0, 0]
+        },
+        {
+          "id": 23,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [3, 0, 0, 0]
+        },
+        {
+          "id": 24,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [0, 0, 0, 2]
+        },
+        {
+          "id": 25,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [0, 0, 2, 2]
+        },
+        {
+          "id": 26,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [0, 0, 2, 0]
+        },
+        {
+          "id": 27,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [1, 0, 1, 1]
+        },
+        {
+          "id": 28,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [0, 1, 1, 1]
+        },
+        {
+          "id": 29,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [0, 0, 0, 0]
+        },
+        {
+          "id": 30,
+          "objectgroup": {
+            "draworder": "index",
+            "name": "",
+            "objects": [
+              {
+                "height": 32,
+                "id": 5,
+                "name": "",
+                "rotation": 0,
+                "type": "",
+                "visible": true,
+                "width": 32,
+                "x": 0,
+                "y": 0
+              },
+              {
+                "height": 0,
+                "id": 7,
+                "name": "",
+                "rotation": 0,
+                "type": "",
+                "visible": true,
+                "width": 1,
+                "x": 89,
+                "y": -154
+              }
+            ],
+            "opacity": 1,
+            "type": "objectgroup",
+            "visible": true,
+            "x": 0,
+            "y": 0
+          },
+          "probability": 0.01,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": true
+            }
+          ],
+          "terrain": [0, 0, 0, 0]
+        },
+        {
+          "id": 31,
+          "probability": 0.01,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [0, 0, 0, 0]
+        },
+        {
+          "id": 32,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [0, 2, 0, 2]
+        },
+        {
+          "id": 33,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [2, 2, 2, 2]
+        },
+        {
+          "id": 34,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [2, 0, 2, 0]
+        },
+        {
+          "id": 35,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [2, 2, 2, 0]
+        },
+        {
+          "id": 36,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [2, 2, 0, 2]
+        },
+        {
+          "id": 37,
+          "objectgroup": {
+            "draworder": "index",
+            "name": "",
+            "objects": [
+              {
+                "height": 0,
+                "id": 1,
+                "name": "",
+                "rotation": 0,
+                "type": "",
+                "visible": true,
+                "width": 0,
+                "x": 16,
+                "y": 15
+              }
+            ],
+            "opacity": 1,
+            "type": "objectgroup",
+            "visible": true,
+            "x": 0,
+            "y": 0
+          },
+          "probability": 0.01,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [0, 0, 0, 0]
+        },
+        {
+          "id": 38,
+          "probability": 0.01,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [0, 0, 0, 0]
+        },
+        {
+          "id": 39,
+          "probability": 0.01,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [0, 0, 0, 0]
+        },
+        {
+          "id": 40,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [0, 2, 0, 0]
+        },
+        {
+          "id": 41,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [2, 2, 0, 0]
+        },
+        {
+          "id": 42,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [2, 0, 0, 0]
+        },
+        {
+          "id": 43,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [2, 0, 2, 2]
+        },
+        {
+          "id": 44,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [0, 2, 2, 2]
+        },
+        {
+          "id": 45,
+          "objectgroup": {
+            "draworder": "index",
+            "name": "",
+            "objects": [
+              {
+                "height": 32,
+                "id": 1,
+                "name": "",
+                "rotation": 0,
+                "type": "",
+                "visible": true,
+                "width": 32,
+                "x": 0,
+                "y": 0
+              }
+            ],
+            "opacity": 1,
+            "type": "objectgroup",
+            "visible": true,
+            "x": 0,
+            "y": 0
+          },
+          "probability": 0,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": true
+            }
+          ],
+          "terrain": [0, 0, 0, 0]
+        },
+        {
+          "id": 46,
+          "objectgroup": {
+            "draworder": "index",
+            "name": "",
+            "objects": [
+              {
+                "height": 32,
+                "id": 1,
+                "name": "",
+                "rotation": 0,
+                "type": "",
+                "visible": true,
+                "width": 32,
+                "x": 0,
+                "y": 0
+              }
+            ],
+            "opacity": 1,
+            "type": "objectgroup",
+            "visible": true,
+            "x": 0,
+            "y": 0
+          },
+          "probability": 0.01,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [0, 0, 0, 0]
+        },
+        {
+          "id": 47,
+          "probability": 0.01,
+          "properties": [
+            {
+              "name": "collidable",
+              "type": "bool",
+              "value": false
+            }
+          ],
+          "terrain": [0, 0, 0, 0]
         }
-      },
+      ],
       "tilewidth": 32
     }
   ],
   "tilewidth": 32,
   "type": "map",
-  "version": 1,
+  "version": 1.2,
   "width": 40
 }
