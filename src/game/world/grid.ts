@@ -52,4 +52,10 @@ export class Grid {
   public set(x: number, y: number, cell: Cell): void {
     this.cells[x + y * this.width] = cell;
   }
+
+  //   private gameObjectToUnit(
+  //     gameObject: phaser.GameObjects.GameObject
+  //   ): Unit | null {
+  //     if (gameObject.name == ) return null;
+  //   }
 }
