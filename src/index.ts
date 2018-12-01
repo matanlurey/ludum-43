@@ -1,5 +1,6 @@
 // tslint:disable:no-magic-numbers
 import * as phaser from 'phaser';
+import { UIMenu } from './game/ui';
 
 // Global Flags.
 declare const FLAGS_DIMENSIONS: {
@@ -32,6 +33,7 @@ class HelloScene extends phaser.Scene {
 
     this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     this.cameras.main.startFollow(this.player, false);
+    this.createUI();
   }
 
   public update(_: number, __: number): void {
@@ -48,6 +50,10 @@ class HelloScene extends phaser.Scene {
     if (this.cursors.up!.isDown) {
       this.player.y -= 5;
     }
+  }
+
+  private createUI(): void {
+    this.children.add(new UIMenu(this));
   }
 }
 
