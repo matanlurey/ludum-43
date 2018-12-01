@@ -1,45 +1,71 @@
 import * as phaser from 'phaser';
+import { Grid } from './grid';
 
 /**
  * The Unit class represents a drawable unit on a Grid.
  */
 export class Unit {
   private readonly tilemap: phaser.Tilemaps.Tilemap;
-  private readonly sprite: phaser.GameObjects.Sprite;
+  private readonly sprite: phaser.GameObjects.Sprite | null;
+  public readonly grid: Grid;
+  private gridPosition: phaser.Math.Vector2;
 
   constructor(
     tilemap: phaser.Tilemaps.Tilemap,
-    sprite: phaser.GameObjects.Sprite
+    sprite: phaser.GameObjects.Sprite | null,
+    grid: Grid,
+    gridPosition: phaser.Math.Vector2
   ) {
     this.tilemap = tilemap;
     this.sprite = sprite;
+    this.grid = grid;
+    this.gridPosition = new phaser.Math.Vector2(gridPosition);
+  }
+
+  public getX(): number {
+    return this.gridPosition.x;
+  }
+
+  public getY(): number {
+    return this.gridPosition.y;
   }
 
   /**
-   * Updates where the unit's sprite is drawn based on a grid position.
+   * Updates where the unit's position and where its sprite is drawn based on a grid position.
    */
   public updateSpritePosition(gridPosition: Phaser.Math.Vector2) {
+    this.gridPosition = new phaser.Math.Vector2(gridPosition);
     const worldPosition = this.tilemap.tileToWorldXY(
       gridPosition.x,
       gridPosition.y
     );
-    this.sprite.setPosition(worldPosition.x, worldPosition.y);
+    if (this.sprite !== null) {
+      this.sprite.setPosition(worldPosition.x, worldPosition.y);
+    }
   }
 
   public faceNorth(): void {
-    this.sprite.angle = 270;
+    if (this.sprite !== null) {
+      this.sprite.angle = 270;
+    }
   }
 
   public faceEast(): void {
-    this.sprite.angle = 0;
+    if (this.sprite !== null) {
+      this.sprite.angle = 0;
+    }
   }
 
   public faceSouth(): void {
-    this.sprite.angle = 90;
+    if (this.sprite !== null) {
+      this.sprite.angle = 90;
+    }
   }
 
   public faceWest(): void {
-    this.sprite.angle = 180;
+    if (this.sprite !== null) {
+      this.sprite.angle = 180;
+    }
   }
 }
 
