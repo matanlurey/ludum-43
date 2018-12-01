@@ -1,6 +1,8 @@
 import * as phaser from 'phaser';
 
 export class UnitSprite extends phaser.GameObjects.Sprite {
+  private readonly lasers: phaser.GameObjects.Group;
+
   constructor(
     scene: phaser.Scene,
     x: number,
@@ -18,6 +20,7 @@ export class UnitSprite extends phaser.GameObjects.Sprite {
         NPC: 'npc',
       }[sprite]
     );
+    this.lasers = new phaser.GameObjects.Group(this.scene);
   }
 
   public faceNorth(): void {
@@ -34,5 +37,10 @@ export class UnitSprite extends phaser.GameObjects.Sprite {
 
   public faceWest(): void {
     this.angle = 180;
+  }
+
+  public fireLaser(): void {
+    const laser: phaser.GameObjects.Image = this.lasers.create(this.x + this.width, this.y + 9, 'laser');
+    laser.angle = 90;
   }
 }
