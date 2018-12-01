@@ -28,6 +28,7 @@ class HelloScene extends phaser.Scene {
     this.load.image('pc2', 'src/assets/pc2.png');
     this.load.image('pc3', 'src/assets/pc3.png');
     this.load.image('npc', 'src/assets/npc.png');
+    this.load.image('laser', 'src/assets/laser.png');
   }
 
   public create(): void {
@@ -40,7 +41,15 @@ class HelloScene extends phaser.Scene {
       new UnitSprite(this, 300, 350, '2'),
       new UnitSprite(this, 300, 400, '3'),
     ];
-    this.players.forEach(p => this.children.add(p));
+    this.players.forEach(p => {
+      this.children.add(p);
+    });
+
+    // DEBUG Function: debugFireLaser()
+    // tslint:disable-next-line:no-any
+    (window as any).debugFireLaser = () => {
+      this.players.forEach(p => p.fireLaser());
+    };
 
     // this.cursors = this.input.keyboard.createCursorKeys();
     this.cameras.main.setBounds(
