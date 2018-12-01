@@ -1,5 +1,6 @@
 import * as phaser from 'phaser';
 import { UIMenu } from './game/ui';
+import { World } from './game/world/world';
 import { UnitSprite } from './game/world/unit';
 
 // Global Flags.
@@ -11,8 +12,10 @@ declare const FLAGS_DIMENSIONS: {
 // Test Scene
 class HelloScene extends phaser.Scene {
   private players: UnitSprite[] = [];
+  // private cursors!: phaser.Input.Keyboard.CursorKeys;
   private uiMenu!: UIMenu;
   private tilemap!: phaser.Tilemaps.Tilemap;
+  private world!: World;
 
   constructor() {
     super({ key: 'HelloScene' });
@@ -39,17 +42,42 @@ class HelloScene extends phaser.Scene {
     ];
     this.players.forEach(p => this.children.add(p));
 
+    // this.cursors = this.input.keyboard.createCursorKeys();
     this.cameras.main.setBounds(
       0,
       0,
       this.tilemap.widthInPixels,
       this.tilemap.heightInPixels
     );
+
+    this.world = new World(this.tilemap);
     this.createUI();
   }
 
+  // public panCameraToTile(tileX: number, tileY: number) {
+  // const worldX = this.tilemap.worldToTileX();
+  // const worldY = this.tilemap.worldToTileY();
+  // this.cameras.main.setPosition(this.player, false);
+  // }
+
   public update(_: number, __: number): void {
     this.uiMenu.update();
+    // if (this.cursors.left!.isDown) {
+    //   this.player.x -= 5;
+    //   this.player.faceWest();
+    // }
+    // if (this.cursors.right!.isDown) {
+    //   this.player.x += 5;
+    //   this.player.faceEast();
+    // }
+    // if (this.cursors.down!.isDown) {
+    //   this.player.y += 5;
+    //   this.player.faceSouth();
+    // }
+    // if (this.cursors.up!.isDown) {
+    //   this.player.y -= 5;
+    //   this.player.faceNorth();
+    // }
     this.mouseInput();
   }
 
@@ -67,6 +95,7 @@ class HelloScene extends phaser.Scene {
     );
     if (clickedTile !== null) {
       clickedTile.setAlpha(0);
+      this.world.handleClick(clickedTile.x, clickedTile.y);
     }
   }
 

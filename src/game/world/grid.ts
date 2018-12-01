@@ -1,14 +1,18 @@
 import * as phaser from 'phaser';
+import { Unit } from './unit';
 
 /**
  * The Cell class defines an immutable grid cell.
  */
 export class Cell {
-  // Defines whether cell blocks movement.
-  public readonly canCollide: boolean;
+  // Returns whether this cell blocks movement.
+  public readonly collides: () => boolean;
 
-  constructor(canCollide: boolean) {
-    this.canCollide = canCollide;
+  public readonly units: Unit[];
+
+  constructor(collides: () => boolean) {
+    this.collides = collides;
+    this.units = new Array<Unit>();
   }
 }
 
@@ -38,7 +42,8 @@ export class Grid {
     this.cells = new Array<Cell>(this.width * this.height);
     for (let y: number = 0; y < this.height; y++) {
       for (let x: number = 0; x < this.width; x++) {
-        this.set(x, y, new Cell(tilemap.getTileAt(x, y).canCollide));
+        const collidesFn = () => tilemap.getTileAt(x, y).canCollide;
+        this.set(x, y, new Cell(collidesFn));
       }
     }
   }

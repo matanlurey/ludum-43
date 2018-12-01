@@ -1,5 +1,49 @@
 import * as phaser from 'phaser';
 
+/**
+ * The Unit class represents a drawable unit on a Grid.
+ */
+export class Unit {
+  private readonly tilemap: phaser.Tilemaps.Tilemap;
+  private readonly sprite: phaser.GameObjects.Sprite;
+
+  constructor(
+    tilemap: phaser.Tilemaps.Tilemap,
+    sprite: phaser.GameObjects.Sprite
+  ) {
+    this.tilemap = tilemap;
+    this.sprite = sprite;
+  }
+
+  /**
+   * Updates where the unit's sprite is drawn based on a grid position.
+   */
+  public updateSpritePosition(gridPosition: Phaser.Math.Vector2) {
+    const worldPosition = this.tilemap.tileToWorldXY(
+      gridPosition.x,
+      gridPosition.y
+    );
+    this.sprite.setPosition(worldPosition.x, worldPosition.y);
+  }
+
+  public faceNorth(): void {
+    this.sprite.angle = 270;
+  }
+
+  public faceEast(): void {
+    this.sprite.angle = 0;
+  }
+
+  public faceSouth(): void {
+    this.sprite.angle = 90;
+  }
+
+  public faceWest(): void {
+    this.sprite.angle = 180;
+  }
+}
+
+// TODO: Replace with Unit class
 export class UnitSprite extends phaser.GameObjects.Sprite {
   constructor(
     scene: phaser.Scene,
