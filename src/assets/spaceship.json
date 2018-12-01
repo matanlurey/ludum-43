@@ -527,10 +527,10 @@
         0,
         43,
         43,
-        44,
         43,
         43,
-        44,
+        43,
+        43,
         43,
         43,
         43,
@@ -4114,7 +4114,7 @@
     {
       "draworder": "topdown",
       "id": 4,
-      "name": "Object Layer 1",
+      "name": "Objects",
       "objects": [
         {
           "height": 31,
@@ -8266,7 +8266,7 @@
       "y": 0
     }
   ],
-  "nextlayerid": 6,
+  "nextlayerid": 8,
   "nextobjectid": 6,
   "orientation": "orthogonal",
   "renderorder": "right-down",
@@ -8331,7 +8331,7 @@
           "id": 0,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8342,7 +8342,7 @@
           "id": 1,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8353,7 +8353,7 @@
           "id": 2,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8363,7 +8363,7 @@
           "id": 3,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": true
             }
@@ -8373,7 +8373,7 @@
           "id": 4,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8384,7 +8384,7 @@
           "id": 5,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8395,7 +8395,7 @@
           "id": 6,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8406,7 +8406,7 @@
           "id": 7,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8417,7 +8417,7 @@
           "id": 8,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8428,7 +8428,7 @@
           "id": 9,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8439,7 +8439,7 @@
           "id": 10,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8450,7 +8450,7 @@
           "id": 11,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8461,7 +8461,7 @@
           "id": 12,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8472,7 +8472,7 @@
           "id": 13,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8483,7 +8483,7 @@
           "id": 14,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8494,7 +8494,7 @@
           "id": 15,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8505,7 +8505,7 @@
           "id": 16,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8516,7 +8516,7 @@
           "id": 17,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8527,7 +8527,7 @@
           "id": 18,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8538,7 +8538,7 @@
           "id": 19,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8549,7 +8549,7 @@
           "id": 20,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8560,7 +8560,7 @@
           "id": 21,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8571,7 +8571,7 @@
           "id": 22,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8582,7 +8582,7 @@
           "id": 23,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8593,7 +8593,7 @@
           "id": 24,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8604,7 +8604,7 @@
           "id": 25,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8615,7 +8615,7 @@
           "id": 26,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8626,7 +8626,7 @@
           "id": 27,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8637,7 +8637,7 @@
           "id": 28,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": true
             }
@@ -8648,7 +8648,7 @@
           "id": 29,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": true
             }
@@ -8659,7 +8659,7 @@
           "id": 30,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": true
             }
@@ -8669,7 +8669,7 @@
           "id": 31,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": true
             }
@@ -8680,7 +8680,7 @@
           "id": 32,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8691,7 +8691,7 @@
           "id": 33,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8702,7 +8702,7 @@
           "id": 34,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8713,7 +8713,7 @@
           "id": 35,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8724,7 +8724,7 @@
           "id": 36,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8735,7 +8735,7 @@
           "id": 37,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8746,7 +8746,7 @@
           "id": 38,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8757,7 +8757,7 @@
           "id": 39,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8768,7 +8768,7 @@
           "id": 40,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8779,7 +8779,7 @@
           "id": 41,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8788,9 +8788,31 @@
         },
         {
           "id": 42,
+          "objectgroup": {
+            "draworder": "index",
+            "name": "",
+            "objects": [
+              {
+                "height": 32,
+                "id": 1,
+                "name": "",
+                "rotation": 0,
+                "type": "",
+                "visible": true,
+                "width": 32,
+                "x": 0,
+                "y": 0
+              }
+            ],
+            "opacity": 1,
+            "type": "objectgroup",
+            "visible": true,
+            "x": 0,
+            "y": 0
+          },
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": true
             }
@@ -8800,7 +8822,7 @@
           "id": 43,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": true
             }
@@ -8810,7 +8832,7 @@
           "id": 44,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": true
             }
@@ -8820,7 +8842,7 @@
           "id": 45,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": true
             }
@@ -8831,7 +8853,7 @@
           "id": 46,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8842,7 +8864,7 @@
           "id": 47,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8853,7 +8875,7 @@
           "id": 48,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8864,7 +8886,7 @@
           "id": 49,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8875,7 +8897,7 @@
           "id": 50,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8886,7 +8908,7 @@
           "id": 51,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8897,7 +8919,7 @@
           "id": 52,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8908,7 +8930,7 @@
           "id": 53,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8919,7 +8941,7 @@
           "id": 54,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8930,7 +8952,7 @@
           "id": 55,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8941,7 +8963,7 @@
           "id": 56,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8952,7 +8974,7 @@
           "id": 57,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8963,7 +8985,7 @@
           "id": 58,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": true
             }
@@ -8973,7 +8995,7 @@
           "id": 59,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": true
             }
@@ -8984,7 +9006,7 @@
           "id": 60,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -8995,7 +9017,7 @@
           "id": 61,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -9006,7 +9028,7 @@
           "id": 62,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -9017,7 +9039,7 @@
           "id": 63,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -9028,7 +9050,7 @@
           "id": 64,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -9039,7 +9061,7 @@
           "id": 65,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -9050,7 +9072,7 @@
           "id": 66,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -9061,7 +9083,7 @@
           "id": 67,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -9072,7 +9094,7 @@
           "id": 68,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -9082,7 +9104,7 @@
           "id": 69,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -9092,7 +9114,7 @@
           "id": 70,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -9103,7 +9125,7 @@
           "id": 71,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -9114,7 +9136,7 @@
           "id": 72,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -9124,7 +9146,7 @@
           "id": 73,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": true
             }
@@ -9135,7 +9157,7 @@
           "id": 74,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -9146,7 +9168,7 @@
           "id": 75,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -9157,7 +9179,7 @@
           "id": 76,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -9168,7 +9190,7 @@
           "id": 77,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -9179,7 +9201,7 @@
           "id": 78,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -9190,7 +9212,7 @@
           "id": 79,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -9201,7 +9223,7 @@
           "id": 80,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -9212,7 +9234,7 @@
           "id": 81,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -9223,7 +9245,7 @@
           "id": 82,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }
@@ -9233,7 +9255,7 @@
           "id": 83,
           "properties": [
             {
-              "name": "collidable",
+              "name": "collides",
               "type": "bool",
               "value": false
             }

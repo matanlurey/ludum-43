@@ -42,7 +42,7 @@ export class Grid {
     this.cells = new Array<Cell>(this.width * this.height);
     for (let y: number = 0; y < this.height; y++) {
       for (let x: number = 0; x < this.width; x++) {
-        const collidesFn = () => tilemap.getTileAt(x, y).canCollide;
+        const collidesFn = () => tilemap.getTileAt(x, y).collides;
         this.set(x, y, new Cell(collidesFn));
       }
     }

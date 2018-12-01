@@ -16,6 +16,7 @@ class HelloScene extends phaser.Scene {
   private uiMenu!: UIMenu;
   private tilemap!: phaser.Tilemaps.Tilemap;
   private world!: World;
+  private spaceshiplayer!: phaser.Tilemaps.DynamicTilemapLayer;
 
   constructor() {
     super({ key: 'HelloScene' });
@@ -34,7 +35,9 @@ class HelloScene extends phaser.Scene {
   public create(): void {
     this.tilemap = this.make.tilemap({ key: 'map' });
     const tileset = this.tilemap.addTilesetImage('spaceship');
-    this.tilemap.createDynamicLayer(0, tileset, 0, 0);
+
+    this.spaceshiplayer = this.tilemap.createDynamicLayer(0, tileset, 0, 0);
+    this.spaceshiplayer.setCollisionByProperty({ collides: true });
 
     this.players = [
       new UnitSprite(this, 300, 300, '1'),
