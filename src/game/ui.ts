@@ -100,7 +100,6 @@ export class UIMenuCharacter extends phaser.GameObjects.Container {
   }
 
   private onClick(): void {
-    this.scene.cameras.main.startFollow(this.target);
     this.uimenu.world.selectPlayer(this.id);
   }
 

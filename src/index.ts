@@ -2,7 +2,6 @@ import * as phaser from 'phaser';
 import { UIMenu } from './game/ui';
 import { World } from './game/world/world';
 import { Character } from './game/world/unit';
-import { UILayer } from './game/world/layer';
 
 // Global Flags.
 declare const FLAGS_DIMENSIONS: {
@@ -17,11 +16,12 @@ class HelloScene extends phaser.Scene {
 
   private cursors!: phaser.Input.Keyboard.CursorKeys;
   private uiMenu!: UIMenu;
-  private uiLayer!: UILayer;
 
   private tilemap!: phaser.Tilemaps.Tilemap;
   private world!: World;
   private groundLayer!: phaser.Tilemaps.DynamicTilemapLayer;
+
+  private mouseDown: boolean = false;
 
   constructor() {
     super({ key: 'HelloScene' });
@@ -43,7 +43,6 @@ class HelloScene extends phaser.Scene {
     this.tilemap = this.make.tilemap({ key: 'map' });
 
     const tileset = this.tilemap.addTilesetImage('spaceship');
-    this.uiLayer = new UILayer(this.tilemap);
     this.groundLayer = this.tilemap.createDynamicLayer(0, tileset, 0, 0);
     this.groundLayer.setCollisionByProperty({ collides: true });
 
@@ -58,7 +57,7 @@ class HelloScene extends phaser.Scene {
     );
     this.cameras.main.scrollX = 200;
 
-    this.world = new World(this.tilemap, this.players, this.zombies);
+    this.world = new World(this, this.tilemap, this.players, this.zombies);
     this.createUI();
   }
 
@@ -88,20 +87,20 @@ class HelloScene extends phaser.Scene {
 
   private mouseInput(): void {
     const pointer = this.input.activePointer;
-    if (!pointer.isDown) {
-      return;
+    if (pointer.isDown && !this.mouseDown) {
+      this.mouseDown = pointer.isDown;
+      const worldPoint: Phaser.Math.Vector2 = pointer.positionToCamera(
+        this.cameras.main
+      ) as Phaser.Math.Vector2;
+      const clickedTile = this.groundLayer.getTileAtWorldXY(
+        worldPoint.x,
+        worldPoint.y
+      );
+      if (clickedTile !== null) {
+        this.world.handleClick(clickedTile.x, clickedTile.y);
+      }
     }
-    const worldPoint: Phaser.Math.Vector2 = pointer.positionToCamera(
-      this.cameras.main
-    ) as Phaser.Math.Vector2;
-    const clickedTile = this.groundLayer.getTileAtWorldXY(
-      worldPoint.x,
-      worldPoint.y
-    );
-    if (clickedTile !== null) {
-      this.uiLayer.setActive(clickedTile.x, clickedTile.y);
-      this.world.handleClick(clickedTile.x, clickedTile.y);
-    }
+    this.mouseDown = pointer.isDown;
   }
 
   private createUI(): void {
