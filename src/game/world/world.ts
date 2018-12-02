@@ -1,6 +1,7 @@
 import * as phaser from 'phaser';
 import { Grid } from './grid';
 import { Character, PhysicalUnit } from './unit';
+import { UNIT_LAYER_NAME } from '../constants';
 
 /**
  * The World class defines the game world.
@@ -17,6 +18,8 @@ export class World {
 
     // Instantiate the players.
     this.createPlayers();
+    this.grid = new Grid(tilemap);
+    this.loadFromTilemapObjectLayer(tilemap);
   }
 
   public handleClick(gridX: number, gridY: number) {
@@ -90,6 +93,21 @@ export class World {
       )
     );
   }
+
+  /**
+   * Loads the data from the object layer of the given tilemap.
+   */
+  private loadFromTilemapObjectLayer(tilemap: phaser.Tilemaps.Tilemap) {
+    const unitLayer = tilemap.getObjectLayer(UNIT_LAYER_NAME);
+    unitLayer!.objects.forEach(gameObject => {
+      const rawAssetObject = new RawAssetObject(gameObject);
+      if (rawAssetObject !== null) {
+        // TODO: Do something with the loaded objects.
+        // tslint:disable-next-line:no-console
+        console.log(rawAssetObject);
+      }
+    });
+  }
 }
 
 export class UnitAction {
@@ -99,5 +117,40 @@ export class UnitAction {
   constructor(type: 'move' | 'attack', position: phaser.Math.Vector2) {
     this.type = type;
     this.position = new phaser.Math.Vector2(position);
+  }
+}
+
+/**
+ * The RawAssetObject class represents a Tilemap object layer object.
+ */
+class RawAssetObject {
+  public readonly name: string;
+  public readonly x: number;
+  public readonly y: number;
+  // These are the "Custom properties" as set in Tiled editor.
+  public readonly rawProperties: Map<string, string>;
+
+  /**
+   * Constructs a RawAssetObject
+   */
+  constructor(gameObject: phaser.GameObjects.GameObject) {
+    // Need to access properties that are set by the asset loader but that don't
+    // exist on GameObject for whatever reason.
+    // tslint:disable-next-line:no-any
+    const objData = (gameObject as any) as {
+      name: string;
+      x: number;
+      y: number;
+      properties: Array<{ name: string; type: string; value: string }>;
+    };
+    const rawProperties = new Map<string, string>();
+    objData.properties.forEach(property => {
+      rawProperties.set(property.name, property.value);
+    });
+    // We parsed them, now set this object's fields.
+    this.name = objData.name;
+    this.x = objData.x;
+    this.y = objData.y;
+    this.rawProperties = rawProperties;
   }
 }

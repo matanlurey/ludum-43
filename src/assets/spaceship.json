@@ -4118,11 +4118,56 @@
       "objects": [
         {
           "height": 0,
-          "id": 17,
-          "name": "START",
+          "id": 26,
+          "name": "pc-3",
           "point": true,
+          "properties": [
+            {
+              "name": "object-type",
+              "type": "string",
+              "value": "pc-spawn"
+            }
+          ],
           "rotation": 0,
-          "type": "PC",
+          "type": "",
+          "visible": true,
+          "width": 0,
+          "x": 430,
+          "y": 339
+        },
+        {
+          "height": 0,
+          "id": 27,
+          "name": "pc-2",
+          "point": true,
+          "properties": [
+            {
+              "name": "object-type",
+              "type": "string",
+              "value": "pc-spawn"
+            }
+          ],
+          "rotation": 0,
+          "type": "",
+          "visible": true,
+          "width": 0,
+          "x": 581,
+          "y": 350
+        },
+        {
+          "height": 0,
+          "id": 17,
+          "name": "pc-1",
+          "point": true,
+          "properties": [
+            {
+              "name": "object-type",
+              "type": "string",
+              "value": "pc-spawn"
+            }
+          ],
+          "rotation": 0,
+          "type": "",
           "visible": true,
           "width": 0,
           "x": 366,
@@ -4131,10 +4176,17 @@
         {
           "height": 0,
           "id": 18,
-          "name": "FINISH",
+          "name": "goal",
           "point": true,
+          "properties": [
+            {
+              "name": "object-type",
+              "type": "string",
+              "value": "goal"
+            }
+          ],
           "rotation": 0,
-          "type": "PC",
+          "type": "",
           "visible": true,
           "width": 0,
           "x": 1741.66666666667,
@@ -4143,10 +4195,17 @@
         {
           "height": 0,
           "id": 19,
-          "name": "SPAWN_01",
+          "name": "hostile-7",
           "point": true,
+          "properties": [
+            {
+              "name": "object-type",
+              "type": "string",
+              "value": "hostile-spawn"
+            }
+          ],
           "rotation": 0,
-          "type": "marker",
+          "type": "",
           "visible": true,
           "width": 0,
           "x": 909.5,
@@ -4155,10 +4214,17 @@
         {
           "height": 0,
           "id": 20,
-          "name": "SPAWN_02",
+          "name": "hostile-6",
           "point": true,
+          "properties": [
+            {
+              "name": "object-type",
+              "type": "string",
+              "value": "hostile-spawn"
+            }
+          ],
           "rotation": 0,
-          "type": "marker",
+          "type": "",
           "visible": true,
           "width": 0,
           "x": 752.5,
@@ -4167,10 +4233,17 @@
         {
           "height": 0,
           "id": 21,
-          "name": "SPAWN_03",
+          "name": "hostile-5",
           "point": true,
+          "properties": [
+            {
+              "name": "object-type",
+              "type": "string",
+              "value": "hostile-spawn"
+            }
+          ],
           "rotation": 0,
-          "type": "marker",
+          "type": "",
           "visible": true,
           "width": 0,
           "x": 660.5,
@@ -4179,10 +4252,17 @@
         {
           "height": 0,
           "id": 22,
-          "name": "SPAWN_04",
+          "name": "hostile-4",
           "point": true,
+          "properties": [
+            {
+              "name": "object-type",
+              "type": "string",
+              "value": "hostile-spawn"
+            }
+          ],
           "rotation": 0,
-          "type": "marker",
+          "type": "",
           "visible": true,
           "width": 0,
           "x": 560.5,
@@ -4191,10 +4271,17 @@
         {
           "height": 0,
           "id": 23,
-          "name": "SPAWN_05",
+          "name": "hostile-3",
           "point": true,
+          "properties": [
+            {
+              "name": "object-type",
+              "type": "string",
+              "value": "hostile-spawn"
+            }
+          ],
           "rotation": 0,
-          "type": "marker",
+          "type": "",
           "visible": true,
           "width": 0,
           "x": 1492,
@@ -4203,10 +4290,17 @@
         {
           "height": 0,
           "id": 24,
-          "name": "SPAWN_06",
+          "name": "hostile-2",
           "point": true,
+          "properties": [
+            {
+              "name": "object-type",
+              "type": "string",
+              "value": "hostile-spawn"
+            }
+          ],
           "rotation": 0,
-          "type": "marker",
+          "type": "",
           "visible": true,
           "width": 0,
           "x": 1105.33333333333,
@@ -4215,10 +4309,17 @@
         {
           "height": 0,
           "id": 25,
-          "name": "SPAWN_07",
+          "name": "hostile-1",
           "point": true,
+          "properties": [
+            {
+              "name": "object-type",
+              "type": "string",
+              "value": "hostile-spawn"
+            }
+          ],
           "rotation": 0,
-          "type": "marker",
+          "type": "",
           "visible": true,
           "width": 0,
           "x": 1682.66666666667,
@@ -8341,8 +8442,8 @@
       "y": 0
     }
   ],
-  "nextlayerid": 9,
-  "nextobjectid": 26,
+  "nextlayerid": 10,
+  "nextobjectid": 28,
   "orientation": "orthogonal",
   "renderorder": "right-down",
   "tiledversion": "1.2.1",
