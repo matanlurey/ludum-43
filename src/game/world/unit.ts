@@ -125,8 +125,8 @@ export class Character extends DisplayUnit {
     cell: Cell,
     sprite: phaser.GameObjects.Sprite,
     public readonly name: string,
-    private mHitPoints: number,
-    private mActionPoints: number
+    private readonly mHitPoints: number,
+    private readonly mActionPoints: number
   ) {
     super(grid, cell, sprite);
     this.sprite.setSize(32, 32);
