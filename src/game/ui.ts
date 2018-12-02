@@ -19,7 +19,7 @@ export class UIMenu extends phaser.GameObjects.Container {
   private readonly titleText: phaser.GameObjects.Text;
   private readonly characters: UIMenuCharacter[] = [];
 
-  constructor(scene: phaser.Scene, private readonly world: World) {
+  constructor(scene: phaser.Scene, public readonly world: World) {
     super(scene, 0, 0);
 
     // Create Title Text.
@@ -38,10 +38,6 @@ export class UIMenu extends phaser.GameObjects.Container {
 
     // Ignore Camera.
     this.setScrollFactor(0, 0);
-  }
-
-  public getWorld() {
-    return this.world;
   }
 
   public addCharacter(character: Character): UIMenuCharacter {
@@ -105,11 +101,11 @@ export class UIMenuCharacter extends phaser.GameObjects.Container {
 
   private onClick(): void {
     this.scene.cameras.main.startFollow(this.target);
-    this.uimenu.getWorld().selectPlayer(this.id);
+    this.uimenu.world.selectPlayer(this.id);
   }
 
   public isSelected(): boolean {
-    return this.uimenu.getWorld().getSelectedPlayer() === this.id;
+    return this.uimenu.world.getSelectedPlayer() === this.id;
   }
 
   private alignContent(y: number, width: number, height: number): void {

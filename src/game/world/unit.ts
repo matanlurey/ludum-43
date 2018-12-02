@@ -75,6 +75,13 @@ export class PhysicalUnit {
   public get isVisible(): boolean {
     return false;
   }
+
+  /**
+   * Whether this unit physically prevents movement into its cell.
+   */
+  public get preventsMovement(): boolean {
+    return this.isVisible;
+  }
 }
 
 export class DisplayUnit extends PhysicalUnit {

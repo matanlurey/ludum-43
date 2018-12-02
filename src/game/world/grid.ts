@@ -1,6 +1,5 @@
 import * as phaser from 'phaser';
 import { PhysicalUnit } from './unit';
-import { UNIT_LAYER_NAME } from '../constants';
 
 /**
  * The Cell class defines an immutable grid cell.
@@ -12,6 +11,7 @@ export class Cell {
    * @param collides Returns whether this cell blocks movement.
    */
   constructor(
+    private readonly grid: Grid,
     public readonly collides: () => boolean,
     public readonly x: number,
     public readonly y: number
@@ -57,6 +57,37 @@ export class Cell {
   public get units(): Iterable<PhysicalUnit> {
     return this.units;
   }
+
+  /**
+   * Enumerable collection of adjacent cells.
+   */
+  public get adjacentCells(): Iterable<Cell> {
+    const results = [
+      // N
+      this.grid.get(this.x, this.y - 1),
+      // E
+      this.grid.get(this.x + 1, this.y),
+      // S
+      this.grid.get(this.x, this.y + 1),
+      // W
+      this.grid.get(this.x - 1, this.y),
+    ];
+    return results.filter(r => r !== null);
+  }
+
+  /**
+   * Whether this cell can handle characters moving into it.
+   */
+  public get isPathable(): boolean {
+    return !this.mUnits.some(u => u.preventsMovement);
+  }
+
+  /**
+   * Enumerable collection of adjacent pathable cells.
+   */
+  public get pathableCells(): Iterable<Cell> {
+    return Array.from(this.adjacentCells).filter(f => f.isPathable);
+  }
 }
 
 /**
@@ -75,23 +106,22 @@ export class Grid {
     for (let y: number = 0; y < this.height; y++) {
       for (let x: number = 0; x < this.width; x++) {
         const collidesFn = () => tilemap.getTileAt(x, y).collides;
-        this.set(x, y, new Cell(collidesFn, x, y));
+        this.set(x, y, new Cell(this, collidesFn, x, y));
       }
     }
-    const unitLayer = tilemap.getObjectLayer(UNIT_LAYER_NAME);
-    unitLayer!.objects.forEach(gameObject => {
-      // tslint:disable-next-line:no-console
-      console.log(gameObject.name);
-    });
   }
 
-  // Get the cell at the given coordinates.
+  /**
+   * Returns the cell at @param x, @param y.
+   */
   public get(x: number, y: number): Cell {
     return this.cells[x + y * this.width];
   }
 
-  // Set the cell at the given coordinates to the given Cell object.
-  public set(x: number, y: number, cell: Cell): void {
+  /**
+   * Set the cell at the @param x, @param y to @param cell.
+   */
+  private set(x: number, y: number, cell: Cell): void {
     this.cells[x + y * this.width] = cell;
   }
 
