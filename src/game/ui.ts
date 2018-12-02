@@ -1,3 +1,4 @@
+import { World } from './world/world';
 import * as phaser from 'phaser';
 import { Character } from './world/unit';
 
@@ -18,7 +19,7 @@ export class UIMenu extends phaser.GameObjects.Container {
   private readonly titleText: phaser.GameObjects.Text;
   private readonly characters: UIMenuCharacter[] = [];
 
-  constructor(scene: phaser.Scene) {
+  constructor(scene: phaser.Scene, private readonly world: World) {
     super(scene, 0, 0);
 
     // Create Title Text.
@@ -39,9 +40,11 @@ export class UIMenu extends phaser.GameObjects.Container {
     this.setScrollFactor(0, 0);
   }
 
-  public addCharacter(
-    character: Character,
-  ): UIMenuCharacter {
+  public getWorld() {
+    return this.world;
+  }
+
+  public addCharacter(character: Character): UIMenuCharacter {
     const item = new UIMenuCharacter(
       this.scene,
       this,
@@ -67,17 +70,6 @@ export class UIMenu extends phaser.GameObjects.Container {
       c.update(i * charHeight + 40, this.width - paddingSize, charHeight);
     });
   }
-
-  public select(id: number) {
-    this.characters.forEach((charMenu, i) => {
-      if (i === id) {
-        charMenu.select();
-      } else {
-        charMenu.deselect();
-      }
-    });
-  }
-
   private alignBounds(): void {
     const { width, height } = this.scene.game.canvas;
     this.x = width - UIMenu.uiWidth;
@@ -89,7 +81,6 @@ export class UIMenu extends phaser.GameObjects.Container {
 
 export class UIMenuCharacter extends phaser.GameObjects.Container {
   private previewSprite!: phaser.GameObjects.Sprite;
-  private selected: boolean = false;
 
   constructor(
     scene: phaser.Scene,
@@ -114,15 +105,11 @@ export class UIMenuCharacter extends phaser.GameObjects.Container {
 
   private onClick(): void {
     this.scene.cameras.main.startFollow(this.target);
-    this.uimenu.select(this.id);
+    this.uimenu.getWorld().selectPlayer(this.id);
   }
 
-  public select(): void {
-    this.selected = true;
-  }
-
-  public deselect(): void {
-    this.selected = false;
+  public isSelected(): boolean {
+    return this.uimenu.getWorld().getSelectedPlayer() === this.id;
   }
 
   private alignContent(y: number, width: number, height: number): void {
@@ -135,7 +122,7 @@ export class UIMenuCharacter extends phaser.GameObjects.Container {
   private drawBox(): void {
     this.graphics.lineStyle(
       1,
-      this.selected ? charForegroundSelected : charForeground
+      this.isSelected() ? charForegroundSelected : charForeground
     );
     this.graphics.fillStyle(1, charForeground);
     this.graphics.strokeRect(this.x, this.y, this.width, this.height);

@@ -7,6 +7,7 @@ import { Character, PhysicalUnit } from './unit';
  */
 export class World {
   private readonly grid: Grid;
+  private selectedPlayerID: number = 0;
 
   constructor(
     private readonly tilemap: phaser.Tilemaps.Tilemap,
@@ -26,6 +27,14 @@ export class World {
         collides ? 'does' : 'does not'
       } collide.`
     );
+  }
+
+  public selectPlayer(id: number) {
+    this.selectedPlayerID = id;
+  }
+
+  public getSelectedPlayer() {
+    return this.selectedPlayerID;
   }
 
   /**
