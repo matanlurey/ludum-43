@@ -44,6 +44,8 @@ export class PhysicalUnit {
    * This function will not trigger any animation, and the sprite, if any, may
    * appear to "teleport". Where possible, use the @see {moveTo} function in
    * order to make the action appear graceful.
+   *
+   * **NOTE**: This function does not validate if the move is valid!
    */
   public moveImmediate(newCell: Cell): void {
     this.cell.removeUnit(this);
@@ -59,10 +61,19 @@ export class PhysicalUnit {
    * walking).
    *
    * The returned @see Promise completes when the animation is complete, if any.
+   *
+   * **NOTE**: This function does not validate if the move is valid!
    */
   public moveTo(newCell: Cell): Promise<void> {
     this.moveImmediate(newCell);
     return Promise.resolve();
+  }
+
+  /**
+   * Whether this unit is physically visible to the user.
+   */
+  public get isVisible(): boolean {
+    return false;
   }
 }
 
@@ -81,6 +92,10 @@ export class DisplayUnit extends PhysicalUnit {
       (this.y + 0.5) * this.sprite.height
     );
   }
+
+  public get isVisible(): boolean {
+    return true;
+  }
 }
 
 export class Character extends DisplayUnit {
@@ -88,24 +103,41 @@ export class Character extends DisplayUnit {
     grid: Grid,
     cell: Cell,
     scene: phaser.Scene,
-    sprite: 'pc1' | 'pc2' | 'pc3' | 'npc'
+    sprite: 'pc1' | 'pc2' | 'pc3' | 'npc',
+    name: string,
+    hitPoints: number,
+    actionPoints: number
   ): Character {
     return new Character(
       grid,
       cell,
       scene.make.sprite({
         key: sprite,
-      })
+      }),
+      name,
+      hitPoints,
+      actionPoints
     );
   }
 
   private constructor(
     grid: Grid,
     cell: Cell,
-    sprite: phaser.GameObjects.Sprite
+    sprite: phaser.GameObjects.Sprite,
+    public readonly name: string,
+    private mHitPoints: number,
+    private mActionPoints: number
   ) {
     super(grid, cell, sprite);
     this.sprite.setSize(32, 32);
     this.sprite.setDisplaySize(32, 32);
+  }
+
+  public get actionPoints() {
+    return this.mActionPoints;
+  }
+
+  public get hitPoints() {
+    return this.mHitPoints;
   }
 }

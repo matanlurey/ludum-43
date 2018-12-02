@@ -6,7 +6,7 @@ import { UNIT_LAYER_NAME } from '../constants';
  * The Cell class defines an immutable grid cell.
  */
 export class Cell {
-  private readonly units: PhysicalUnit[] = [];
+  private readonly mUnits: PhysicalUnit[] = [];
 
   /**
    * @param collides Returns whether this cell blocks movement.
@@ -17,25 +17,45 @@ export class Cell {
     public readonly y: number
   ) {}
 
+  /**
+   * Adds @param unit to the cell if it does not already exist.
+   *
+   * Returns whether it was added.
+   */
   public addUnit(unit: PhysicalUnit): boolean {
     if (!this.hasUnit(unit)) {
-      this.units.push(unit);
+      this.mUnits.push(unit);
       return true;
     }
     return false;
   }
 
+  /**
+   * Returns whether @param unit is within the cell.
+   */
   public hasUnit(unit: PhysicalUnit): boolean {
-    return this.units.indexOf(unit) !== -1;
+    return this.mUnits.indexOf(unit) !== -1;
   }
 
+  /**
+   * Removes @param unit from the cell.
+   *
+   * Returns whether it was removed.
+   */
   public removeUnit(unit: PhysicalUnit): boolean {
-    const index = this.units.indexOf(unit);
+    const index = this.mUnits.indexOf(unit);
     if (index === -1) {
       return false;
     }
-    this.units.splice(index, 1);
+    this.mUnits.splice(index, 1);
     return true;
+  }
+
+  /**
+   * Enumerable collection of all the units in the location.
+   */
+  public get units(): Iterable<PhysicalUnit> {
+    return this.units;
   }
 }
 

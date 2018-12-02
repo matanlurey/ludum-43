@@ -56,19 +56,28 @@ export class World {
         this.grid,
         this.grid.get(9, 9),
         this.tilemap.scene,
-        'pc1'
+        'pc1',
+        'Jesse',
+        5,
+        5
       ),
       Character.create(
         this.grid,
         this.grid.get(9, 11),
         this.tilemap.scene,
-        'pc2'
+        'pc2',
+        'Alex',
+        3,
+        7
       ),
       Character.create(
         this.grid,
         this.grid.get(9, 13),
         this.tilemap.scene,
-        'pc3'
+        'pc3',
+        'Matan',
+        7,
+        3
       )
     );
   }

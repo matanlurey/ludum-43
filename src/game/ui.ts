@@ -1,4 +1,5 @@
 import * as phaser from 'phaser';
+import { Character } from './world/unit';
 
 const menuOutline = 0xffffff;
 const menuForeground = 0x031f4c;
@@ -36,19 +37,17 @@ export class UIMenu extends phaser.GameObjects.Container {
 
     // Ignore Camera.
     this.setScrollFactor(0, 0);
-    this.depth = 100;
   }
 
   public addCharacter(
-    name: string,
-    sprite: phaser.GameObjects.Sprite
+    character: Character,
   ): UIMenuCharacter {
     const item = new UIMenuCharacter(
       this.scene,
       this,
-      sprite,
+      character.sprite,
       this.graphics,
-      name,
+      character,
       this.characters.length
     );
     this.add(item);
@@ -97,7 +96,7 @@ export class UIMenuCharacter extends phaser.GameObjects.Container {
     private readonly uimenu: UIMenu,
     private readonly target: phaser.GameObjects.Sprite,
     private readonly graphics: phaser.GameObjects.Graphics,
-    private readonly charName: string,
+    private readonly character: Character,
     private readonly id: number
   ) {
     super(scene);
@@ -147,7 +146,7 @@ export class UIMenuCharacter extends phaser.GameObjects.Container {
     const text = this.scene.add.text(
       paddingSize * 4,
       paddingSize,
-      this.charName
+      this.character.name
     );
     text.setFontSize(charTextSize);
     this.add(text);
@@ -158,7 +157,7 @@ export class UIMenuCharacter extends phaser.GameObjects.Container {
       paddingSize * 4,
       // tslint:disable-next-line:no-magic-numbers
       paddingSize * 2.5,
-      '5 HP 5 AP'
+      `${this.character.hitPoints} HP, ${this.character.actionPoints} AP`
     );
     hpText.setFontSize(hpTextSize);
     this.add(hpText);

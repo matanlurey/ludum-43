@@ -90,9 +90,7 @@ class HelloScene extends phaser.Scene {
 
   private createUI(): void {
     this.uiMenu = new UIMenu(this);
-    this.uiMenu.addCharacter('Jesse', this.players[0].sprite);
-    this.uiMenu.addCharacter('Alex', this.players[1].sprite);
-    this.uiMenu.addCharacter('Matan', this.players[2].sprite);
+    this.players.forEach(p => this.uiMenu.addCharacter(p));
     this.children.add(this.uiMenu);
     this.input.topOnly = true;
   }
