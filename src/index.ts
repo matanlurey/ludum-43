@@ -32,13 +32,14 @@ class HelloScene extends phaser.Scene {
     this.load.image('pc2', 'src/assets/pc2.png');
     this.load.image('pc3', 'src/assets/pc3.png');
     this.load.image('npc', 'src/assets/npc.png');
+
     this.load.image('laser', 'src/assets/laser.png');
   }
 
   public create(): void {
     this.tilemap = this.make.tilemap({ key: 'map' });
-    const tileset = this.tilemap.addTilesetImage('spaceship');
 
+    const tileset = this.tilemap.addTilesetImage('spaceship');
     this.spaceshiplayer = this.tilemap.createDynamicLayer(0, tileset, 0, 0);
     this.spaceshiplayer.setCollisionByProperty({ collides: true });
     this.uiLayer = new UILayer(this.tilemap);
