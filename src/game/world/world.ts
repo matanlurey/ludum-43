@@ -1,6 +1,6 @@
 import * as phaser from 'phaser';
 import { Grid } from './grid';
-import { Unit } from './unit';
+import { Character, PhysicalUnit } from './unit';
 
 /**
  * The World class defines the game world.
@@ -8,8 +8,14 @@ import { Unit } from './unit';
 export class World {
   private readonly grid: Grid;
 
-  constructor(tilemap: phaser.Tilemaps.Tilemap) {
-    this.grid = new Grid(tilemap);
+  constructor(
+    private readonly tilemap: phaser.Tilemaps.Tilemap,
+    private readonly players: Character[]
+  ) {
+    this.grid = new Grid(this.tilemap);
+
+    // Instantiate the players.
+    this.createPlayers();
   }
 
   public handleClick(gridX: number, gridY: number) {
@@ -25,23 +31,46 @@ export class World {
   /**
    * Returns an array of available unit actions for the given unit.
    */
-  public static getUnitActions(unit: Unit): UnitAction[] {
+  public getUnitActions(unit: PhysicalUnit): UnitAction[] {
     const actions: UnitAction[] = [];
-    const x = unit.getX();
-    const y = unit.getY();
+    const x = unit.x;
+    const y = unit.y;
     if (x > 0) {
       actions.push(new UnitAction('move', new phaser.Math.Vector2(x - 1, y)));
     }
-    if (x < unit.grid.width - 1) {
+    if (x < this.grid.width - 1) {
       actions.push(new UnitAction('move', new phaser.Math.Vector2(x + 1, y)));
     }
     if (y > 0) {
       actions.push(new UnitAction('move', new phaser.Math.Vector2(x, y - 1)));
     }
-    if (y < unit.grid.height - 1) {
+    if (y < this.grid.height - 1) {
       actions.push(new UnitAction('move', new phaser.Math.Vector2(x, y + 1)));
     }
     return actions;
+  }
+
+  private createPlayers(): void {
+    this.players.push(
+      Character.create(
+        this.grid,
+        this.grid.get(9, 9),
+        this.tilemap.scene,
+        'pc1'
+      ),
+      Character.create(
+        this.grid,
+        this.grid.get(9, 11),
+        this.tilemap.scene,
+        'pc2'
+      ),
+      Character.create(
+        this.grid,
+        this.grid.get(9, 13),
+        this.tilemap.scene,
+        'pc3'
+      )
+    );
   }
 }
 

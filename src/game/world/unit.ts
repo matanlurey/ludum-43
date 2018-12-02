@@ -1,120 +1,111 @@
 import * as phaser from 'phaser';
-import { Grid } from './grid';
+import { Cell, Grid } from './grid';
 
 /**
- * The Unit class represents a drawable unit on a Grid.
+ * Represents a 2D entity on the @see Grid.
+ *
+ * The unit may or may not be _phyiscally_ displayed (for example, a spawn
+ * location, invisible gate, or other marker-like location or trigger). See also
+ * @see DisplayUnit.
  */
-export class Unit {
-  private readonly tilemap: phaser.Tilemaps.Tilemap;
-  private readonly sprite: phaser.GameObjects.Sprite | null;
-  public readonly grid: Grid;
-  private gridPosition: phaser.Math.Vector2;
-
-  constructor(
-    tilemap: phaser.Tilemaps.Tilemap,
-    sprite: phaser.GameObjects.Sprite | null,
-    grid: Grid,
-    gridPosition: phaser.Math.Vector2
-  ) {
-    this.tilemap = tilemap;
-    this.sprite = sprite;
-    this.grid = grid;
-    this.gridPosition = new phaser.Math.Vector2(gridPosition);
-  }
-
-  public getX(): number {
-    return this.gridPosition.x;
-  }
-
-  public getY(): number {
-    return this.gridPosition.y;
+export class PhysicalUnit {
+  /**
+   * @param grid Grid the unit is present on.
+   * @param cell Cell the unit should be added to.
+   */
+  constructor(protected readonly grid: Grid, protected cell: Cell) {
+    cell.addUnit(this);
   }
 
   /**
-   * Updates where the unit's position and where its sprite is drawn based on a grid position.
+   * Update the object on the game loop.
    */
-  public updateSpritePosition(gridPosition: Phaser.Math.Vector2) {
-    this.gridPosition = new phaser.Math.Vector2(gridPosition);
-    const worldPosition = this.tilemap.tileToWorldXY(
-      gridPosition.x,
-      gridPosition.y
-    );
-    if (this.sprite !== null) {
-      this.sprite.setPosition(worldPosition.x, worldPosition.y);
-    }
+  public update(): void {
+    // Not implemented for PhysicalUnit.
   }
 
-  public faceNorth(): void {
-    if (this.sprite !== null) {
-      this.sprite.angle = 270;
-    }
+  /**
+   * X-coordinate within the grid.
+   */
+  public get x() {
+    return this.cell.x;
   }
 
-  public faceEast(): void {
-    if (this.sprite !== null) {
-      this.sprite.angle = 0;
-    }
+  /**
+   * Y-coordinate within the grid.
+   */
+  public get y() {
+    return this.cell.y;
   }
 
-  public faceSouth(): void {
-    if (this.sprite !== null) {
-      this.sprite.angle = 90;
-    }
+  /**
+   * Moves the unit immediately to @param newCell.
+   *
+   * This function will not trigger any animation, and the sprite, if any, may
+   * appear to "teleport". Where possible, use the @see {moveTo} function in
+   * order to make the action appear graceful.
+   */
+  public moveImmediate(newCell: Cell): void {
+    this.cell.removeUnit(this);
+    this.cell = newCell;
+    this.cell.addUnit(this);
   }
 
-  public faceWest(): void {
-    if (this.sprite !== null) {
-      this.sprite.angle = 180;
-    }
+  /**
+   * Moves the unit to @param newCell.
+   *
+   * The @see cell property immediately will change, but the physical location
+   * of the sprite may take additional time (i.e. to give the appearance of
+   * walking).
+   *
+   * The returned @see Promise completes when the animation is complete, if any.
+   */
+  public moveTo(newCell: Cell): Promise<void> {
+    this.moveImmediate(newCell);
+    return Promise.resolve();
   }
 }
 
-// TODO: Replace with Unit class
-export class UnitSprite extends phaser.GameObjects.Sprite {
-  private readonly lasers: phaser.GameObjects.Group;
-
+export class DisplayUnit extends PhysicalUnit {
   constructor(
-    scene: phaser.Scene,
-    x: number,
-    y: number,
-    sprite: '1' | '2' | '3' | 'NPC'
+    grid: Grid,
+    cell: Cell,
+    public readonly sprite: phaser.GameObjects.Sprite
   ) {
-    super(
-      scene,
-      x,
-      y,
-      {
-        '1': 'pc1',
-        '2': 'pc2',
-        '3': 'pc3',
-        NPC: 'npc',
-      }[sprite]
+    super(grid, cell);
+  }
+
+  public update(): void {
+    this.sprite.setPosition(
+      (this.x + 0.5) * this.sprite.width,
+      (this.y + 0.5) * this.sprite.height
     );
-    this.lasers = new phaser.GameObjects.Group(this.scene);
   }
+}
 
-  public faceNorth(): void {
-    this.angle = 270;
-  }
-
-  public faceEast(): void {
-    this.angle = 0;
-  }
-
-  public faceSouth(): void {
-    this.angle = 90;
-  }
-
-  public faceWest(): void {
-    this.angle = 180;
-  }
-
-  public fireLaser(): void {
-    const laser: phaser.GameObjects.Image = this.lasers.create(
-      this.x + this.width,
-      this.y + 9,
-      'laser'
+export class Character extends DisplayUnit {
+  public static create(
+    grid: Grid,
+    cell: Cell,
+    scene: phaser.Scene,
+    sprite: 'pc1' | 'pc2' | 'pc3' | 'npc'
+  ): Character {
+    return new Character(
+      grid,
+      cell,
+      scene.make.sprite({
+        key: sprite,
+      })
     );
-    laser.angle = 90;
+  }
+
+  private constructor(
+    grid: Grid,
+    cell: Cell,
+    sprite: phaser.GameObjects.Sprite
+  ) {
+    super(grid, cell, sprite);
+    this.sprite.setSize(32, 32);
+    this.sprite.setDisplaySize(32, 32);
   }
 }

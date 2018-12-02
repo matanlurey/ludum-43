@@ -1,19 +1,41 @@
 import * as phaser from 'phaser';
-import { Unit } from './unit';
+import { PhysicalUnit } from './unit';
 import { UNIT_LAYER_NAME } from '../constants';
 
 /**
  * The Cell class defines an immutable grid cell.
  */
 export class Cell {
-  // Returns whether this cell blocks movement.
-  public readonly collides: () => boolean;
+  private readonly units: PhysicalUnit[] = [];
 
-  public readonly units: Unit[];
+  /**
+   * @param collides Returns whether this cell blocks movement.
+   */
+  constructor(
+    public readonly collides: () => boolean,
+    public readonly x: number,
+    public readonly y: number
+  ) {}
 
-  constructor(collides: () => boolean) {
-    this.collides = collides;
-    this.units = new Array<Unit>();
+  public addUnit(unit: PhysicalUnit): boolean {
+    if (!this.hasUnit(unit)) {
+      this.units.push(unit);
+      return true;
+    }
+    return false;
+  }
+
+  public hasUnit(unit: PhysicalUnit): boolean {
+    return this.units.indexOf(unit) !== -1;
+  }
+
+  public removeUnit(unit: PhysicalUnit): boolean {
+    const index = this.units.indexOf(unit);
+    if (index === -1) {
+      return false;
+    }
+    this.units.splice(index, 1);
+    return true;
   }
 }
 
@@ -33,7 +55,7 @@ export class Grid {
     for (let y: number = 0; y < this.height; y++) {
       for (let x: number = 0; x < this.width; x++) {
         const collidesFn = () => tilemap.getTileAt(x, y).collides;
-        this.set(x, y, new Cell(collidesFn));
+        this.set(x, y, new Cell(collidesFn, x, y));
       }
     }
     const unitLayer = tilemap.getObjectLayer(UNIT_LAYER_NAME);

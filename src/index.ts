@@ -1,7 +1,7 @@
 import * as phaser from 'phaser';
 import { UIMenu } from './game/ui';
 import { World } from './game/world/world';
-import { UnitSprite } from './game/world/unit';
+import { Character } from './game/world/unit';
 import { UILayer } from './game/world/layer';
 
 // Global Flags.
@@ -12,7 +12,7 @@ declare const FLAGS_DIMENSIONS: {
 
 // Test Scene
 class HelloScene extends phaser.Scene {
-  private players: UnitSprite[] = [];
+  private players: Character[] = [];
   private uiMenu!: UIMenu;
   private uiLayer!: UILayer;
 
@@ -44,20 +44,7 @@ class HelloScene extends phaser.Scene {
     this.spaceshiplayer.setCollisionByProperty({ collides: true });
     this.uiLayer = new UILayer(this.tilemap);
 
-    this.players = [
-      new UnitSprite(this, 300, 300, '1'),
-      new UnitSprite(this, 300, 350, '2'),
-      new UnitSprite(this, 300, 400, '3'),
-    ];
-    this.players.forEach(p => {
-      this.children.add(p);
-    });
-
-    // DEBUG Function: debugFireLaser()
-    // tslint:disable-next-line:no-any
-    (window as any).debugFireLaser = () => {
-      this.players.forEach(p => p.fireLaser());
-    };
+    this.players = [];
 
     // this.cursors = this.input.keyboard.createCursorKeys();
     this.cameras.main.setBounds(
@@ -67,7 +54,7 @@ class HelloScene extends phaser.Scene {
       this.tilemap.heightInPixels
     );
 
-    this.world = new World(this.tilemap);
+    this.world = new World(this.tilemap, this.players);
     this.createUI();
   }
 
@@ -79,6 +66,7 @@ class HelloScene extends phaser.Scene {
 
   public update(_: number, __: number): void {
     this.uiMenu.update();
+    this.players.forEach(p => p.update());
     this.mouseInput();
   }
 
@@ -102,9 +90,9 @@ class HelloScene extends phaser.Scene {
 
   private createUI(): void {
     this.uiMenu = new UIMenu(this);
-    this.uiMenu.addCharacter('Jesse', this.players[0]);
-    this.uiMenu.addCharacter('Alex', this.players[1]);
-    this.uiMenu.addCharacter('Matan', this.players[2]);
+    this.uiMenu.addCharacter('Jesse', this.players[0].sprite);
+    this.uiMenu.addCharacter('Alex', this.players[1].sprite);
+    this.uiMenu.addCharacter('Matan', this.players[2].sprite);
     this.children.add(this.uiMenu);
     this.input.topOnly = true;
   }
