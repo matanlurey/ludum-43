@@ -23,5 +23,5 @@ elif is_lint; then
   npm run lint
 elif is_build; then
   npm run build
-  npm run test
+  # npm run test
 fi
