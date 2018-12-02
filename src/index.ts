@@ -56,17 +56,11 @@ class HelloScene extends phaser.Scene {
       this.tilemap.widthInPixels,
       this.tilemap.heightInPixels
     );
+    this.cameras.main.scrollX = 200;
 
     this.world = new World(this.tilemap, this.players, this.zombies);
     this.createUI();
   }
-
-  // TODO: Pan the camera to selected units
-  // public panCameraToTile(tileX: number, tileY: number) {
-  // const worldX = this.tilemap.worldToTileX();
-  // const worldY = this.tilemap.worldToTileY();
-  // this.cameras.main.centerOn()
-  // }
 
   public update(_: number, __: number): void {
     this.uiMenu.update();
