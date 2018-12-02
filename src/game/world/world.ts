@@ -100,7 +100,7 @@ export class World {
   private loadFromTilemapObjectLayer(tilemap: phaser.Tilemaps.Tilemap) {
     const unitLayer = tilemap.getObjectLayer(UNIT_LAYER_NAME);
     unitLayer!.objects.forEach(gameObject => {
-      const rawAssetObject = new RawAssetObject(gameObject);
+      const rawAssetObject = new RawAssetObject(gameObject, tilemap);
       if (rawAssetObject !== null) {
         // TODO: Do something with the loaded objects.
         // tslint:disable-next-line:no-console
@@ -127,13 +127,18 @@ class RawAssetObject {
   public readonly name: string;
   public readonly x: number;
   public readonly y: number;
+  public readonly tileX: number;
+  public readonly tileY: number;
   // These are the "Custom properties" as set in Tiled editor.
   public readonly rawProperties: Map<string, string>;
 
   /**
    * Constructs a RawAssetObject
    */
-  constructor(gameObject: phaser.GameObjects.GameObject) {
+  constructor(
+    gameObject: phaser.GameObjects.GameObject,
+    tilemap: phaser.Tilemaps.Tilemap
+  ) {
     // Need to access properties that are set by the asset loader but that don't
     // exist on GameObject for whatever reason.
     // tslint:disable-next-line:no-any
@@ -151,6 +156,8 @@ class RawAssetObject {
     this.name = objData.name;
     this.x = objData.x;
     this.y = objData.y;
+    this.tileX = tilemap.worldToTileX(objData.x);
+    this.tileY = tilemap.worldToTileY(objData.y);
     this.rawProperties = rawProperties;
   }
 }
