@@ -146,6 +146,7 @@ class RawAssetObject {
       name: string;
       x: number;
       y: number;
+      width: number;
       properties: Array<{ name: string; type: string; value: string }>;
     };
     const rawProperties = new Map<string, string>();
@@ -156,8 +157,8 @@ class RawAssetObject {
     this.name = objData.name;
     this.x = objData.x;
     this.y = objData.y;
-    this.tileX = tilemap.worldToTileX(objData.x);
-    this.tileY = tilemap.worldToTileY(objData.y);
+    this.tileX = tilemap.worldToTileX(objData.x - objData.width / 2);
+    this.tileY = tilemap.worldToTileY(objData.y - objData.width / 2);
     this.rawProperties = rawProperties;
   }
 }
