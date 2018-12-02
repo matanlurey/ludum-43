@@ -110,7 +110,7 @@ export class Character extends DisplayUnit {
     grid: Grid,
     cell: Cell,
     scene: phaser.Scene,
-    sprite: 'pc1' | 'pc2' | 'pc3' | 'npc',
+    sprite: 'pc-1' | 'pc-2' | 'pc-3' | 'npc',
     name: string,
     hitPoints: number,
     actionPoints: number

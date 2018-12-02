@@ -4123,6 +4123,21 @@
           "point": true,
           "properties": [
             {
+              "name": "ap",
+              "type": "int",
+              "value": 3
+            },
+            {
+              "name": "hp",
+              "type": "int",
+              "value": 7
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "value": "Matan"
+            },
+            {
               "name": "object-type",
               "type": "string",
               "value": "pc-spawn"
@@ -4132,8 +4147,8 @@
           "type": "",
           "visible": true,
           "width": 0,
-          "x": 430,
-          "y": 339
+          "x": 337.333333333333,
+          "y": 410.333333333333
         },
         {
           "height": 0,
@@ -4142,24 +4157,20 @@
           "point": true,
           "properties": [
             {
-              "name": "object-type",
+              "name": "ap",
+              "type": "int",
+              "value": 7
+            },
+            {
+              "name": "hp",
+              "type": "int",
+              "value": 3
+            },
+            {
+              "name": "name",
               "type": "string",
-              "value": "pc-spawn"
-            }
-          ],
-          "rotation": 0,
-          "type": "",
-          "visible": true,
-          "width": 0,
-          "x": 581,
-          "y": 350
-        },
-        {
-          "height": 0,
-          "id": 17,
-          "name": "pc-1",
-          "point": true,
-          "properties": [
+              "value": "Alex"
+            },
             {
               "name": "object-type",
               "type": "string",
@@ -4170,8 +4181,42 @@
           "type": "",
           "visible": true,
           "width": 0,
-          "x": 366,
-          "y": 369
+          "x": 336.333333333333,
+          "y": 380
+        },
+        {
+          "height": 0,
+          "id": 17,
+          "name": "pc-1",
+          "point": true,
+          "properties": [
+            {
+              "name": "ap",
+              "type": "int",
+              "value": 5
+            },
+            {
+              "name": "hp",
+              "type": "int",
+              "value": 5
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "value": "Jesse"
+            },
+            {
+              "name": "object-type",
+              "type": "string",
+              "value": "pc-spawn"
+            }
+          ],
+          "rotation": 0,
+          "type": "",
+          "visible": true,
+          "width": 0,
+          "x": 337.333333333333,
+          "y": 345.666666666667
         },
         {
           "height": 0,

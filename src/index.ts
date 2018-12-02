@@ -13,6 +13,8 @@ declare const FLAGS_DIMENSIONS: {
 // Test Scene
 class HelloScene extends phaser.Scene {
   private players: Character[] = [];
+  private readonly zombies: Character[] = [];
+
   private cursors!: phaser.Input.Keyboard.CursorKeys;
   private uiMenu!: UIMenu;
   private uiLayer!: UILayer;
@@ -29,9 +31,9 @@ class HelloScene extends phaser.Scene {
     this.load.tilemapTiledJSON('map', 'src/assets/spaceship.json');
     this.load.image('colors', 'src/assets/colors.png');
     this.load.image('spaceship', 'src/assets/spaceship.png');
-    this.load.image('pc1', 'src/assets/pc1.png');
-    this.load.image('pc2', 'src/assets/pc2.png');
-    this.load.image('pc3', 'src/assets/pc3.png');
+    this.load.image('pc-1', 'src/assets/pc1.png');
+    this.load.image('pc-2', 'src/assets/pc2.png');
+    this.load.image('pc-3', 'src/assets/pc3.png');
     this.load.image('npc', 'src/assets/npc.png');
 
     this.load.image('laser', 'src/assets/laser.png');
@@ -55,7 +57,7 @@ class HelloScene extends phaser.Scene {
       this.tilemap.heightInPixels
     );
 
-    this.world = new World(this.tilemap, this.players);
+    this.world = new World(this.tilemap, this.players, this.zombies);
     this.createUI();
   }
 
@@ -69,6 +71,7 @@ class HelloScene extends phaser.Scene {
   public update(_: number, __: number): void {
     this.uiMenu.update();
     this.players.forEach(p => p.update());
+    this.zombies.forEach(p => p.update());
     this.panCameraInput();
     this.mouseInput();
   }

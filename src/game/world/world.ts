@@ -12,12 +12,12 @@ export class World {
 
   constructor(
     private readonly tilemap: phaser.Tilemaps.Tilemap,
-    private readonly players: Character[]
+    private readonly players: Character[],
+    private readonly zombies: Character[]
   ) {
     this.grid = new Grid(this.tilemap);
 
     // Instantiate the players.
-    this.createPlayers();
     this.grid = new Grid(tilemap);
     this.loadFromTilemapObjectLayer(tilemap);
   }
@@ -62,51 +62,51 @@ export class World {
     return actions;
   }
 
-  private createPlayers(): void {
-    this.players.push(
-      Character.create(
-        this.grid,
-        this.grid.get(9, 9),
-        this.tilemap.scene,
-        'pc1',
-        'Jesse',
-        5,
-        5
-      ),
-      Character.create(
-        this.grid,
-        this.grid.get(9, 11),
-        this.tilemap.scene,
-        'pc2',
-        'Alex',
-        3,
-        7
-      ),
-      Character.create(
-        this.grid,
-        this.grid.get(9, 13),
-        this.tilemap.scene,
-        'pc3',
-        'Matan',
-        7,
-        3
-      )
-    );
-  }
-
   /**
    * Loads the data from the object layer of the given tilemap.
    */
-  private loadFromTilemapObjectLayer(tilemap: phaser.Tilemaps.Tilemap) {
+  private loadFromTilemapObjectLayer(tilemap: phaser.Tilemaps.Tilemap): void {
     const unitLayer = tilemap.getObjectLayer(UNIT_LAYER_NAME);
     unitLayer!.objects.forEach(gameObject => {
       const rawAssetObject = new RawAssetObject(gameObject, tilemap);
       if (rawAssetObject !== null) {
-        // TODO: Do something with the loaded objects.
-        // tslint:disable-next-line:no-console
-        console.log(rawAssetObject);
+        switch (rawAssetObject.rawProperties.get('object-type')) {
+          case 'pc-spawn':
+            this.spawnPlayer(rawAssetObject);
+            break;
+          case 'hostile-spawn':
+            this.spawnHostile(rawAssetObject);
+            break;
+        }
       }
     });
+  }
+
+  private spawnPlayer(asset: RawAssetObject): void {
+    const player = Character.create(
+      this.grid,
+      this.grid.get(asset.tileX, asset.tileY),
+      this.tilemap.scene,
+      // tslint:disable-next-line:no-any
+      asset.name as any,
+      asset.rawProperties.get('name'),
+      asset.rawProperties.get('hp'),
+      asset.rawProperties.get('ap')
+    );
+    this.players.push(player);
+  }
+
+  private spawnHostile(asset: RawAssetObject): void {
+    const player = Character.create(
+      this.grid,
+      this.grid.get(asset.tileX, asset.tileY),
+      this.tilemap.scene,
+      'npc',
+      'Zombie',
+      3,
+      3
+    );
+    this.zombies.push(player);
   }
 }
 
@@ -130,7 +130,8 @@ class RawAssetObject {
   public readonly tileX: number;
   public readonly tileY: number;
   // These are the "Custom properties" as set in Tiled editor.
-  public readonly rawProperties: Map<string, string>;
+  // tslint:disable-next-line:no-any
+  public readonly rawProperties: Map<string, any>;
 
   /**
    * Constructs a RawAssetObject
