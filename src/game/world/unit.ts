@@ -1,3 +1,4 @@
+import { TILE_SIZE } from './../constants';
 import * as phaser from 'phaser';
 import { Cell, Grid } from './grid';
 
@@ -136,8 +137,8 @@ export class Character extends DisplayUnit {
     private readonly mActionPoints: number
   ) {
     super(grid, cell, sprite);
-    this.sprite.setSize(32, 32);
-    this.sprite.setDisplaySize(32, 32);
+    this.sprite.setSize(TILE_SIZE, TILE_SIZE);
+    this.sprite.setDisplaySize(TILE_SIZE, TILE_SIZE);
   }
 
   public get actionPoints() {

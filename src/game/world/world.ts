@@ -9,31 +9,33 @@ import { UNIT_LAYER_NAME } from '../constants';
 export class World {
   private readonly grid: Grid;
   private selectedPlayerID: number = 0;
+  private uilayer!: UILayer;
 
   constructor(
+    public readonly scene: phaser.Scene,
     private readonly tilemap: phaser.Tilemaps.Tilemap,
     private readonly players: Character[],
     private readonly zombies: Character[]
   ) {
     this.grid = new Grid(this.tilemap);
-
+    this.uilayer = new UILayer(this.tilemap);
     // Instantiate the players.
     this.grid = new Grid(tilemap);
     this.loadFromTilemapObjectLayer(tilemap);
   }
 
   public handleClick(gridX: number, gridY: number) {
-    const collides = this.grid.get(gridX, gridY).collides();
-    // tslint:disable-next-line:no-console
-    console.log(
-      `You clicked the tile (${gridX}, ${gridY}) and it ${
-        collides ? 'does' : 'does not'
-      } collide.`
-    );
+    this.players.forEach((p, id) => {
+      if (gridX === p.x && gridY === p.y) {
+        this.selectPlayer(id);
+      }
+    });
   }
 
   public selectPlayer(id: number) {
     this.selectedPlayerID = id;
+    this.uilayer.setActive(this.players[id].x, this.players[id].y);
+    this.scene.cameras.main.startFollow(this.players[id].sprite);
   }
 
   public getSelectedPlayer() {
@@ -118,6 +120,44 @@ export class UnitAction {
     this.type = type;
     this.position = new phaser.Math.Vector2(position);
   }
+}
+
+class UILayer {
+  private readonly mLayer: phaser.Tilemaps.DynamicTilemapLayer;
+  private selectedTiles: phaser.Tilemaps.Tile[] = [];
+
+  constructor(parent: phaser.Tilemaps.Tilemap) {
+    const tilemap = parent.scene.make.tilemap();
+    const tileset = tilemap.addTilesetImage('colors', 'colors');
+    this.mLayer = parent.createBlankDynamicLayer('UILayer', tileset);
+    this.mLayer.alpha = 0.5;
+    this.mLayer.depth = 10;
+  }
+
+  public setActive(x: number, y: number): void {
+    // Clear anything on the UI layer.
+    this.clearActive();
+
+    // Make the selected tile yellow.
+    this.insert(x, y, UILayerTile.GREEN);
+  }
+
+  public clearActive(): void {
+    this.selectedTiles.forEach(t => this.mLayer.removeTileAt(t.x, t.y));
+    this.selectedTiles = [];
+  }
+
+  private insert(x: number, y: number, tile: UILayerTile): void {
+    this.selectedTiles.push(this.mLayer.putTileAt(tile, x, y));
+  }
+}
+
+export enum UILayerTile {
+  BLACK = 0,
+  RED = 3,
+  YELLOW = 5,
+  GREEN = 6,
+  BLUE = 7,
 }
 
 /**
