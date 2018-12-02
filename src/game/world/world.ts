@@ -22,6 +22,7 @@ export class World {
     // Instantiate the players.
     this.grid = new Grid(tilemap);
     this.loadFromTilemapObjectLayer(tilemap);
+    this.selectPlayer(0);
   }
 
   public handleClick(gridX: number, gridY: number) {
