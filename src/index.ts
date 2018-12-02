@@ -2,6 +2,7 @@ import * as phaser from 'phaser';
 import { UIMenu } from './game/ui';
 import { World } from './game/world/world';
 import { UnitSprite } from './game/world/unit';
+import { UILayer } from './game/world/layer';
 
 // Global Flags.
 declare const FLAGS_DIMENSIONS: {
@@ -12,8 +13,9 @@ declare const FLAGS_DIMENSIONS: {
 // Test Scene
 class HelloScene extends phaser.Scene {
   private players: UnitSprite[] = [];
-  // private cursors!: phaser.Input.Keyboard.CursorKeys;
   private uiMenu!: UIMenu;
+  private uiLayer!: UILayer;
+
   private tilemap!: phaser.Tilemaps.Tilemap;
   private world!: World;
   private spaceshiplayer!: phaser.Tilemaps.DynamicTilemapLayer;
@@ -24,6 +26,7 @@ class HelloScene extends phaser.Scene {
 
   public preload(): void {
     this.load.tilemapTiledJSON('map', 'src/assets/spaceship.json');
+    this.load.image('colors', 'src/assets/colors.png');
     this.load.image('spaceship', 'src/assets/spaceship.png');
     this.load.image('pc1', 'src/assets/pc1.png');
     this.load.image('pc2', 'src/assets/pc2.png');
@@ -38,6 +41,7 @@ class HelloScene extends phaser.Scene {
 
     this.spaceshiplayer = this.tilemap.createDynamicLayer(0, tileset, 0, 0);
     this.spaceshiplayer.setCollisionByProperty({ collides: true });
+    this.uiLayer = new UILayer(this.tilemap);
 
     this.players = [
       new UnitSprite(this, 300, 300, '1'),
@@ -74,22 +78,6 @@ class HelloScene extends phaser.Scene {
 
   public update(_: number, __: number): void {
     this.uiMenu.update();
-    // if (this.cursors.left!.isDown) {
-    //   this.player.x -= 5;
-    //   this.player.faceWest();
-    // }
-    // if (this.cursors.right!.isDown) {
-    //   this.player.x += 5;
-    //   this.player.faceEast();
-    // }
-    // if (this.cursors.down!.isDown) {
-    //   this.player.y += 5;
-    //   this.player.faceSouth();
-    // }
-    // if (this.cursors.up!.isDown) {
-    //   this.player.y -= 5;
-    //   this.player.faceNorth();
-    // }
     this.mouseInput();
   }
 
@@ -101,12 +89,12 @@ class HelloScene extends phaser.Scene {
     const worldPoint: Phaser.Math.Vector2 = pointer.positionToCamera(
       this.cameras.main
     ) as Phaser.Math.Vector2;
-    const clickedTile = this.tilemap.getTileAtWorldXY(
+    const clickedTile = this.spaceshiplayer.getTileAtWorldXY(
       worldPoint.x,
       worldPoint.y
     );
     if (clickedTile !== null) {
-      clickedTile.setAlpha(0);
+      this.uiLayer.setActive(clickedTile.x, clickedTile.y);
       this.world.handleClick(clickedTile.x, clickedTile.y);
     }
   }

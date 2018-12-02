@@ -35,6 +35,7 @@ export class UIMenu extends phaser.GameObjects.Container {
 
     // Ignore Camera.
     this.setScrollFactor(0, 0);
+    this.depth = 100;
   }
 
   public addCharacter(
